@@ -6,7 +6,7 @@ def read_from_file(filename):
         with open(filename, 'r', encoding='utf-8') as f:
             lines = [line.strip() for line in f.readlines() if line.strip()]
         
-        if len(lines) < 5:
+        if len(lines) < n+3:
             print("Ошибка: недостаточно строк в файле")
             return None
         
@@ -190,7 +190,7 @@ def calculate_SLAU(A, b, eps, max_iter, n):
     error_vector = []
 
     if max_iter == 0: 
-        max_iter = 1000000
+        max_iter = 10000
 
     while iterations < max_iter:
         iterations += 1
@@ -246,7 +246,7 @@ def main():
         
     res, iters, final_errors = calculate_SLAU(A, b, eps, max_iter, n)
     
-    if res:
+    if res is not None:
         print("\nРезультат\n")
         print(f"Количество итераций: {iters}")
         print("Вектор решения X:")
