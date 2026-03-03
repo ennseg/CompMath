@@ -5,12 +5,14 @@ def read_from_file(filename):
     try:
         with open(filename, 'r', encoding='utf-8') as f:
             lines = [line.strip() for line in f.readlines() if line.strip()]
+
+        n = int(lines[0])
         
         if len(lines) < n+3:
             print("Ошибка: недостаточно строк в файле")
             return None
         
-        n = int(lines[0])
+        
         if n < 2 or n > 20:
             print("Ошибка: размерность должна быть 2 <= n <= 20")
             return None
@@ -259,3 +261,4 @@ def main():
 
 while __name__ == "__main__":
     main()
+
