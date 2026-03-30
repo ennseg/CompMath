@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Нелинейные уравнения</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="wasm-status">Загрузка WASM...</div>
+
+<h1>Решение нелинейных уравнений</h1>
+
+<div class="tabs">
+  <button class="tab active" data-tab="eq"  onclick="switchTab('eq')">f(x) = 0</button>
+  <button class="tab"        data-tab="sys" onclick="switchTab('sys')">Системы</button>
+</div>
+
+<div id="page-eq" class="page active">
+
+  <div>
+    <div class="panel">
+      <div class="panel-title">Уравнение</div>
+      <div class="panel-body">
+        <label>Выберите</label>
+        <select id="eq-select" onchange="onEqSelect()"></select>
+        <div class="hint" id="eq-hint"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Метод</div>
+      <div class="panel-body">
+        <label>Выберите метод</label>
+        <select id="method-select">
+          <option value="chord">Метод хорд</option>
+          <option value="secant">Метод секущих</option>
+          <option value="iter">Простые итерации</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Параметры</div>
+      <div class="panel-body">
+        <div class="row2">
+          <div>
+            <label>Левая граница a</label>
+            <input type="text" id="eq-a" autocomplete="off">
+          </div>
+          <div>
+            <label>Правая граница b</label>
+            <input type="text" id="eq-b" autocomplete="off">
+          </div>
+        </div>
+        <label>Точность ε</label>
+        <input type="text" id="eq-eps" value="0.0001" autocomplete="off">
+        <button class="btn-run" onclick="solveEq()">▶ Вычислить</button>
+        <div id="eq-error"></div>
+      </div>
+    </div>
+
+    <div id="eq-result"></div>
+  </div>
+
+  <div>
+    <canvas id="eq-canvas"></canvas>
+    <div id="eq-table"></div>
+  </div>
+
+</div>
+
+<div id="page-sys" class="page">
+
+  <div>
+    <div class="panel">
+      <div class="panel-title">Система уравнений</div>
+      <div class="panel-body">
+        <label>Выберите систему</label>
+        <select id="sys-select" onchange="onSysSelect()"></select>
+        <div class="hint" id="sys-hint"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Начальное приближение</div>
+      <div class="panel-body">
+        <div class="row2">
+          <div>
+            <label>x₀</label>
+            <input type="text" id="sys-x0" autocomplete="off">
+          </div>
+          <div>
+            <label>y₀</label>
+            <input type="text" id="sys-y0" autocomplete="off">
+          </div>
+        </div>
+        <label>Точность ε</label>
+        <input type="text" id="sys-eps" value="0.0001" autocomplete="off">
+        <button class="btn-run" onclick="solveSys()">▶ Решить систему</button>
+        <div id="sys-error"></div>
+      </div>
+    </div>
+
+    <div id="sys-result"></div>
+  </div>
+
+  <div>
+    <canvas id="sys-canvas"></canvas>
+    <div id="sys-table"></div>
+  </div>
+
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
