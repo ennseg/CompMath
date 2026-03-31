@@ -1,0 +1,146 @@
+body {
+  font-family: "Lucida Console", "Lucida Sans Typewriter", Monaco, monospace;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 200px 1fr 25%;
+  gap: 24px;
+  padding: 16px;
+  box-sizing: border-box;
+  min-height: 100vh;
+  align-items: start;
+}
+
+.methods {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.methods button {
+  width: 100%;
+  padding: 8px 6px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.methods button.selected {
+  background: #222;
+  color: #fff;
+  border-color: #222;
+}
+
+.input_data {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.integral-group-label {
+  font-size: 10px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+
+.integral-card {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: inherit;
+  user-select: none;
+}
+
+.integral-card:hover {
+  background: #f0f0f0;
+}
+
+.integral-card.selected {
+  background: #222;
+  color: #fff;
+  border-color: #222;
+}
+
+.params {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 14px;
+}
+
+.params label {
+  font-size: 13px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.container input {
+  width: 80px;
+}
+
+.hint-text {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 12px;
+  font-style: italic;
+  color: #555;
+  margin-top: 2px;
+}
+
+#output {
+  margin-top: 16px;
+  white-space: pre-wrap;
+  font-size: 14px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  min-height: 20px;
+}
+
+.ai-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ai-chat label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#chat-input {
+  width: 100%;
+  height: 50px;
+  resize: vertical;
+  padding: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.chat-send-btn {
+  align-self: flex-start;
+  padding: 6px 16px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+#chat-response {
+  white-space: pre-wrap;
+  font-size: 13px;
+  line-height: 1.5;
+  border-left: 3px solid #ccc;
+  padding-left: 10px;
+  min-height: 20px;
+}

@@ -1,0 +1,65 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+  <title>lab3</title>
+</head>
+
+<body>
+<div class="main">
+
+  <div class="methods">
+    <button onclick="run(this, runLeft)">Метод левых прямоугольников</button>
+    <button onclick="run(this, runMid)">Метод средних прямоугольников</button>
+    <button onclick="run(this, runRight)">Метод правых прямоугольников</button>
+    <button onclick="run(this, runTrap)">Метод трапеций</button>
+    <button onclick="run(this, runSimpson)">Метод Симпсона</button>
+  </div>
+
+  <div class="input_data">
+
+    <div class="integral-group-label">Собственные интегралы</div>
+    <div class="integral-card selected" data-value="int11" onclick="selectIntegral(this)">∫ e^(−x²) dx</div>
+    <div class="integral-card" data-value="int12" onclick="selectIntegral(this)">∫ sin(x)/x dx</div>
+    <div class="integral-card" data-value="int13" onclick="selectIntegral(this)">∫ √(1 + sin²x) dx</div>
+
+    <div class="integral-group-label">Несобственные интегралы 2-го рода</div>
+    <div class="integral-card" data-value="int21" onclick="selectIntegral(this)">∫ 1/√x dx &nbsp;[разрыв в a, a=0]</div>
+    <div class="integral-card" data-value="int22" onclick="selectIntegral(this)">∫ 1/√(1−x) dx &nbsp;[разрыв в b, b=1]</div>
+    <div class="integral-card" data-value="int23" onclick="selectIntegral(this)">∫ 1/√|x| dx &nbsp;[разрыв внутри, a=−1, b=1]</div>
+    <div class="integral-card" data-value="int24" onclick="selectIntegral(this)">∫ 1/x dx &nbsp;[расходится]</div>
+
+    <div class="params">
+      <label>Пределы интегрирования</label>
+      <div class="container">
+        <input type="number" id="integrals_min" placeholder="a">
+        <input type="number" id="integrals_max" placeholder="b">
+      </div>
+
+      <label for="integrals_accuracy">Точность вычисления</label>
+      <input type="number" id="integrals_accuracy" value="0.01">
+      <div class="hint-text">Начальное значение числа разбиения интервала интегрирования: n=4.</div>
+    </div>
+
+    <div id="output"></div>
+  </div>
+
+  <div class="ai-chat">
+    <label for="chat-input">Вайб-мод</label>
+    <textarea id="chat-input" placeholder="Введите метод вычисления"></textarea>
+    <button class="chat-send-btn" onclick="sendToAI()">Отправить</button>
+    <div id="chat-response"></div>
+  </div>
+
+</div>
+
+<script src="js/integrals.js"></script>
+<script src="js/solving.js"></script>
+<script src="js/index.js"></script>
+<script src="js/ai.js"></script>
+</body>
+
+</html>
