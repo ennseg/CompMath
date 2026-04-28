@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>lab4</title>
+</head>
+<body>
+
+<div class="sidebar">
+    <b>Ввод точек (8-12)</b>
+    <table id="inTab">
+        <tbody id="tb"></tbody>
+    </table>
+    <button onclick="addRow()">+ Строка</button>
+    <input type="file" id="fi" onchange="loadF(this)">
+    <button onclick="calc()" style="background: #ddd; font-weight: bold;">РАССЧИТАТЬ</button>
+    <button onclick="downloadReport()" id="dlBtn" style="display:none">СКАЧАТЬ ОТЧЕТ (.TXT)</button>
+</div>
+
+<div class="content">
+    <canvas id="chart" height="150"></canvas>
+    <div id="res"></div>
+    <div id="det" style="display:none">
+        <hr>
+        <b>Векторы для: <span id="detN"></span></b>
+        <table id="detTab">
+            <thead><tr><th>Xi</th><th>Yi</th><th>Phi</th><th>Eps</th></tr></thead>
+            <tbody id="detTb"></tbody>
+        </table>
+    </div>
+</div>
+<script src="js/ui.js"></script>
+</body>
+</html>

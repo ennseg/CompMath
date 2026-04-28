@@ -1,0 +1,9 @@
+body { font-family: monospace; margin: 20px; display: flex; gap: 20px; }
+.sidebar { width: 300px; }
+.content { flex: 1; }
+table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+th, td { border: 1px solid #000; padding: 5px; font-size: 12px; }
+.method-box { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+.best { background: #e6fffa; border-color: #38b2ac; }
+canvas { border: 1px solid #000; max-width: 100%; }
+button { margin: 5px 0; cursor: pointer; width: 100%; }
