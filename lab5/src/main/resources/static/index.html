@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Интерполяция</title>
+<link rel="stylesheet" href="/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="app-header">
+</header>
+
+<main class="container">
+
+  <section class="card" id="inputPanel">
+    <h2 class="card-title">Исходные данные</h2>
+
+    <div class="tab-bar" role="tablist">
+      <button class="tab active" data-tab="manual" role="tab" aria-selected="true">Ввод вручную</button>
+      <button class="tab" data-tab="file" role="tab" aria-selected="false">Из файла</button>
+      <button class="tab" data-tab="function" role="tab" aria-selected="false">Функция</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-manual">
+      <div class="manual-hint">Вводите пары x и y через пробел или запятую. Каждая пара — отдельная строка, либо используйте таблицу.</div>
+      <div class="table-wrap">
+        <table id="dataTable">
+          <thead>
+            <tr><th>#</th><th>x</th><th>y</th><th></th></tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+      <div class="row-actions">
+        <button class="btn btn-sm" id="addRowBtn">+ Добавить строку</button>
+        <button class="btn btn-sm btn-danger" id="clearTableBtn">Очистить</button>
+      </div>
+
+      <div class="bulk-area">
+        <label class="field-label">Быстрый ввод (x y по строкам):</label>
+        <textarea id="bulkInput" rows="5" placeholder="0  1&#10;1  2.718&#10;2  7.389&#10;3  20.09"></textarea>
+        <button class="btn btn-sm" id="parseBulkBtn">Применить</button>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-file">
+      <div class="file-zone" id="dropZone">
+        <div class="file-icon"></div>
+        <p>Перетащите файл сюда или <label for="fileInput" class="file-link">выберите файл</label></p>
+        <p class="file-hint">Форматы: .txt, .csv, .dat · Разделители: пробел, запятая, точка с запятой, табуляция</p>
+        <p class="file-hint"></p>
+        <input type="file" id="fileInput" accept=".txt,.csv,.dat" style="display:none">
+      </div>
+      <div id="fileStatus" class="file-status hidden"></div>
+      <div id="filePreview" class="file-preview hidden"></div>
+    </div>
+
+    <div class="tab-panel" id="tab-function">
+      <div class="fn-grid">
+        <div class="field-group">
+          <label class="field-label">Функция</label>
+          <select id="fnSelect">
+            <option value="sin">sin(x)</option>
+            <option value="cos">cos(x)</option>
+            <option value="exp">e^x</option>
+            <option value="ln">ln(x)  (x > 0)</option>
+            <option value="x2">x²</option>
+            <option value="x3">x³</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Начало интервала</label>
+          <input type="number" id="fnStart" value="0" step="0.1">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Конец интервала</label>
+          <input type="number" id="fnEnd" value="6.28" step="0.1">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Число точек (2–50)</label>
+          <input type="number" id="fnPoints" value="9" min="2" max="50" step="1">
+        </div>
+      </div>
+      <button class="btn" id="generateFnBtn">Сгенерировать</button>
+      <div id="fnStatus" class="file-status hidden"></div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="options-grid">
+      <div class="field-group">
+        <label class="field-label">Точка интерполяции x*</label>
+        <input type="number" id="interpPoint" step="any" placeholder="Например: 2.5">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Методы</label>
+        <select id="methodSelect">
+          <option value="all">Все методы</option>
+          <option value="lagrange">Лагранж</option>
+          <option value="newton_divided">Ньютон (разд. разности)</option>
+          <option value="newton_forward">Ньютон (вперёд, равноотст.)</option>
+          <option value="newton_backward">Ньютон (назад, равноотст.)</option>
+          <option value="gauss1">Гаусс (1-я формула, равноотст.)</option>
+          <option value="gauss2">Гаусс (2-я формула, равноотст.)</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="globalError" class="error-box hidden"></div>
+
+    <button class="btn btn-primary btn-compute" id="computeBtn">Вычислить</button>
+  </section>
+
+  <section class="card hidden" id="resultsPanel">
+    <h2 class="card-title">Результаты</h2>
+
+    <div id="pointResults" class="hidden">
+      <h3 class="section-title">Значение f(x*)</h3>
+      <div id="methodResultsTable"></div>
+    </div>
+
+    <div id="diffSection" class="hidden">
+      <h3 class="section-title">Таблица разностей</h3>
+      <div class="table-scroll" id="diffTableWrap"></div>
+    </div>
+
+    <div id="chartSection">
+      <h3 class="section-title">График</h3>
+      <div class="chart-wrap">
+        <canvas id="mainChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>
